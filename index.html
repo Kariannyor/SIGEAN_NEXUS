@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SIGEAN - Sistema Integral de Gestión Escolar para la Escuela Municipal Rural Aquiles Nazoa" />
+  <meta name="theme-color" content="#008f39" />
+  
+  <!-- Título de la aplicación -->
+  <title>SIGEAN - Sistema de Gestión Escolar</title>
+  
+  <!-- Favicon (opcional) -->
+  <link rel="icon" type="image/png" href="/logo_sigean.png" />
+  
+  <!-- Fuentes de Google (opcional pero recomendado) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Estilos base -->
+  <style>
+    /* Reset básico para consistencia entre navegadores */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    html, body {
+      height: 100%;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    body {
+      background-color: #f4f7f6;
+      color: #333;
+      line-height: 1.5;
+    }
+    
+    /* El elemento root ocupa toda la pantalla */
+    #root {
+      min-height: 100vh;
+    }
+    
+    /* Scrollbar personalizada (opcional) */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: #c1c1c1;
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: #a8a8a8;
+    }
+    
+    /* Animación de fade in para tabs */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 
+    Este div con id="root" es donde React "pinta" toda la aplicación.
+    No modifiques esto manualmente - React lo controla completamente.
+  -->
+  <div id="root"></div>
+  
+  <!-- 
+    El script principal se carga automáticamente por Vite.
+    No necesitas añadir etiquetas <script> manualmente.
+  -->
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>
