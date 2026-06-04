@@ -1,15 +1,16 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["vite/client"], 
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": false, // Cambiar a false temporalmente para evitar que TypeScript bloquee el build por errores menores
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "bundler", // Cambiado de node10 a bundler
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
