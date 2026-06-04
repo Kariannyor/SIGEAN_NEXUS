@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Calendar, Percent, Users, RefreshCw, FileText, Printer } from 'lucide-react';
+import { RefreshCw, Printer } from 'lucide-react';
 
 /**
  * ╔══════════════════════════════════════════════════════════════════════════╗
- * ║            MÓDULO: CONTROL MENSUAL - ASISTENCIA ACUMULADA                ║
- * ║       Visualización tipo "Sábana" (1-31) + Función de Impresión          ║
+ * ║                  MÓDULO: CONTROL MENSUAL - ASISTENCIA ACUMULADA           ║
+ * ║             Visualización tipo "Sábana" (1-31) + Función de Impresión       ║
  * ╚══════════════════════════════════════════════════════════════════════════╝
  */
 
@@ -18,7 +18,6 @@ const ReporteMensual = () => {
   const [anio, setAnio] = useState("2026");
   const [grado, setGrado] = useState("3er Grado"); 
   const [anioEscolar, setAnioEscolar] = useState("2025-2026");
-  const [diasHabiles, setDiasHabiles] = useState(20);
 
   // Generar array de días del mes
   const getDiasEnMes = (m: string, a: string) => new Date(parseInt(a), parseInt(m), 0).getDate();
@@ -27,7 +26,6 @@ const ReporteMensual = () => {
   const consultarMensual = async () => {
     setLoading(true);
     try {
-      // Se envía como año_escolar al backend
       const res = await axios.get(`http://localhost:8000/api/asistencias/acumulado`, {
         params: { 
           mes, 
@@ -82,7 +80,6 @@ const ReporteMensual = () => {
         <p style={{ fontSize: '12px' }}>Año Escolar: {anioEscolar} | Mes: {mes} / Año: {anio}</p>
       </div>
 
-      {/* Filtros de Control Mensual */}
       <section className="no-print" style={styles.filterCard}>
         <div style={styles.filterGrid}>
           <div style={styles.field}>
@@ -117,7 +114,6 @@ const ReporteMensual = () => {
         </div>
       </section>
 
-      {/* Visualización de la "Sábana" de Asistencia */}
       <div style={styles.tableWrapper}>
         <table style={styles.tableAcumulada}>
           <thead>

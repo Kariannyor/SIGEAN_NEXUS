@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Printer, Search, FileCheck, ArrowLeft } from 'lucide-react';
+import { Printer, ArrowLeft } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const ReportesImpresion = () => {
@@ -11,19 +11,18 @@ const ReportesImpresion = () => {
   const [alumnosAprobados, setAlumnosAprobados] = useState<any[]>([]);
 
   useEffect(() => {
+    const cargarAprobados = async () => {
+      try {
+        const res = await axios.get(`http://localhost:8000/api/boletas/aprobadas`, {
+          params: { grado: seleccion.grado, seccion: seleccion.seccion }
+        });
+        setAlumnosAprobados(res.data);
+      } catch (err) {
+        console.error("Error al cargar alumnos aprobados", err);
+      }
+    };
     cargarAprobados();
   }, [seleccion]);
-
-  const cargarAprobados = async () => {
-    try {
-      const res = await axios.get(`http://localhost:8000/api/boletas/aprobadas`, {
-        params: { grado: seleccion.grado, seccion: seleccion.seccion }
-      });
-      setAlumnosAprobados(res.data);
-    } catch (err) {
-      console.error("Error al cargar alumnos aprobados", err);
-    }
-  };
 
   const ejecutarImpresionMasiva = () => {
     if (alumnosAprobados.length === 0) return;
@@ -72,12 +71,9 @@ const ReportesImpresion = () => {
         </div>
       </div>
 
-      {/* ÁREA DE RENDERIZADO PARA IMPRESIÓN (Solo se ve al imprimir) */}
       <div className="print-only">
-        {alumnosAprobados.map((boleta, index) => (
+        {alumnosAprobados.map((boleta) => (
           <div key={boleta.id_boleta} style={styles.boletaIndividual}>
-            
-            {/* ENCABEZADO OFICIAL INSTITUCIONAL */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px', textAlign: 'center' }}>
               <img src="/logo-baruta.png" alt="Baruta" style={{ width: '50px', height: '50px' }} />
               <div style={{ fontSize: '9px', lineHeight: '1.2' }}>
@@ -93,7 +89,6 @@ const ReportesImpresion = () => {
               <p style={{ fontSize: '10px', margin: 0 }}>Año Escolar 2025-2026</p>
             </div>
 
-            {/* CUERPO DE LA BOLETA */}
             <div style={{ marginBottom: '20px', fontSize: '11px' }}>
               <p><strong>Alumno:</strong> {boleta.primer_nombre} {boleta.primer_apellido}</p>
               <p><strong>Cédula Escolar:</strong> {boleta.cedula_escolar}</p>
@@ -108,14 +103,12 @@ const ReportesImpresion = () => {
               <p>{boleta.obs_directivo || 'Sin observaciones adicionales.'}</p>
             </div>
 
-            {/* BLOQUE DE FIRMAS INTEGRADO */}
             <div style={styles.firmaContainer}>
               <div style={styles.firmaBox}><div style={styles.lineaFirma}></div><p><strong>Docente</strong></p></div>
               <div style={styles.firmaBox}><div style={styles.lineaFirma}></div><p><strong>Directivo</strong></p></div>
               <div style={styles.firmaBox}><div style={styles.lineaFirma}></div><p><strong>Representante</strong></p></div>
             </div>
 
-            {/* Salto de página después de cada boleta */}
             <div style={{ pageBreakAfter: 'always' }}></div>
           </div>
         ))}

@@ -1,4 +1,3 @@
-// src/pages/Boletas.tsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
@@ -16,9 +15,9 @@ import {
   FilePlus
 } from "lucide-react";
 
-// IMPORTAMOS MOCK DATA
-import { documentosActas } from "../data/documentosActas.";
-import { alumnosEstatus } from "../data/alumnosEstatus.";
+// IMPORTAMOS MOCK DATA - Asegúrate que el nombre del archivo en la carpeta coincida exactamente
+import { documentosActas } from "../data/documentosActas";
+import { alumnosEstatus } from "../data/alumnosEstatus";
 
 const Boletas = () => {
   const navigate = useNavigate();
@@ -66,7 +65,6 @@ const Boletas = () => {
 
   return (
     <div style={{ padding: "20px" }}>
-      {/* BOTÓN VOLVER */}
       <div style={{ display: "flex", alignItems: "center", gap: "15px", marginBottom: "10px" }}>
         <button
           onClick={() => navigate(-1)}
@@ -84,12 +82,10 @@ const Boletas = () => {
         </button>
       </div>
 
-      {/* TÍTULO */}
       <h2 style={{ marginBottom: "20px" }}>Gestión de Boletas Informativas</h2>
 
-      {/* TABS */}
       <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
-        {tabs.map((tab: any) => (
+        {tabs.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
@@ -110,12 +106,11 @@ const Boletas = () => {
         ))}
       </div>
 
-      {/* CONTENIDO SEGÚN TAB */}
       {activeTab === "gestion" && (
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
           {menuOptions
             .filter((opt) => opt.roles.includes(currentRole))
-            .map((opt: any, i: number) => (
+            .map((opt, i) => (
               <div
                 key={i}
                 onClick={() => navigate(opt.path)}
@@ -144,9 +139,9 @@ const Boletas = () => {
           <table style={{ width: "100%", marginTop: "15px", borderCollapse: "collapse" }}>
             <thead>
               <tr>
-                <th>Estudiante</th>
-                <th>Estatus</th>
-                <th>Observación</th>
+                <th style={{textAlign: 'left'}}>Estudiante</th>
+                <th style={{textAlign: 'left'}}>Estatus</th>
+                <th style={{textAlign: 'left'}}>Observación</th>
               </tr>
             </thead>
             <tbody>
@@ -191,33 +186,6 @@ const Boletas = () => {
                 {doc.nombre}
               </button>
             ))}
-          </div>
-        </div>
-      )}
-
-      {activeTab === "auditoria" && (
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px" }}>
-          <div style={{ padding: "12px", backgroundColor: "#fc8c69", borderRadius: "12px" }}>
-            <p>Estadísticas de Carga Municipal</p>
-            <p style={{ fontSize: "24px", fontWeight: "bold" }}>85.4%</p>
-            <p>Sincronizado con Alcaldía</p>
-          </div>
-
-          <div style={{ padding: "12px", backgroundColor: "#fc8c69", borderRadius: "12px" }}>
-            <p>Reporte de Supervisión</p>
-            <button
-              style={{
-                marginTop: "15px",
-                padding: "15px",
-                backgroundColor: "#b04c20",
-                color: "white",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer"
-              }}
-            >
-              Generar reporte consolidado
-            </button>
           </div>
         </div>
       )}
