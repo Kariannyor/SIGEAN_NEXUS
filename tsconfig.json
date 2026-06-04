@@ -2,14 +2,17 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "module": "ESNext",
-    "moduleResolution": "bundler",
-    "jsx": "react-jsx",
-    "strict": false,
-    "esModuleInterop": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": true,
     "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": false, // Cambiar a false temporalmente para evitar que TypeScript bloquee el build por errores menores
     "forceConsistentCasingInFileNames": true,
-    "ignoreDeprecations": "6.0"
-  },
-  "include": ["src"]
+    "moduleResolution": "bundler", // Cambiado de node10 a bundler
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "jsx": "react-jsx"
+  }
 }

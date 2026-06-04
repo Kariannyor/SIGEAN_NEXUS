@@ -2,13 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { RefreshCw, Printer } from 'lucide-react';
 
-/**
- * ╔══════════════════════════════════════════════════════════════════════════╗
- * ║                  MÓDULO: CONTROL MENSUAL - ASISTENCIA ACUMULADA           ║
- * ║             Visualización tipo "Sábana" (1-31) + Función de Impresión       ║
- * ╚══════════════════════════════════════════════════════════════════════════╝
- */
-
 const ReporteMensual = () => {
   const [loading, setLoading] = useState(false);
   const [datosEstudiantes, setDatosEstudiantes] = useState<any[]>([]);
